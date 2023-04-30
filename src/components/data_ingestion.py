@@ -25,11 +25,10 @@ class DataIngestion:
                 collection_name=self.data_ingestion_config.collection_name)
 
             logging.info(f"list of columns not necessary for prediction")
-            cols_to_drop = ['policy_number', 'policy_bind_date', 'policy_state', 'insured_zip', 'incident_location',
-                            'incident_date']
+            cols_to_drop = ['policy_number','policy_bind_date','policy_state','insured_zip','incident_location','incident_date','incident_state','incident_city','insured_hobbies','auto_make','auto_model','auto_year']
             logging.info(f"dropping the unnecessary columns")
             df.drop(columns=cols_to_drop, inplace=True)
-
+            logging.info(f"dropped the unnecessary columns and now the shape is: {df.shape}")
             logging.info(f"save data in feature store")
             df.replace(to_replace="?",value=np.NAN,inplace=True)
 
